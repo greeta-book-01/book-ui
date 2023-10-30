@@ -1,7 +1,7 @@
 const prod = {
   url: {
     KEYCLOAK_BASE_URL: "https://keycloak.greeta.net",        
-    API_BASE_URL: 'https://orderapi.greeta.net'
+    API_BASE_URL: 'https://bookapi.greeta.net'
   }
 }
 

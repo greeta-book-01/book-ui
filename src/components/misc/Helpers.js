@@ -2,18 +2,11 @@ export const getKeycloak = () => {
   return JSON.parse(localStorage.getItem('keycloak'))
 }
 
-export function parseJwt(token) {
-  if (!token) { return }
-  const base64Url = token.split('.')[1]
-  const base64 = base64Url.replace('-', '+').replace('_', '/')
-  return JSON.parse(window.atob(base64))
-}
-
 export const isAdminFunc = (keycloak) => {
   return keycloak && 
          keycloak.tokenParsed &&
-         keycloak.tokenParsed.resource_access['order-app'] &&
-         keycloak.tokenParsed.resource_access['order-app'].roles.includes('ORDER_MANAGER')
+         keycloak.tokenParsed.resource_access['book-app'] &&
+         keycloak.tokenParsed.resource_access['book-app'].roles.includes('BOOK_MANAGER')
 }
 
 export const getUsernameFunc = (keycloak) => {
@@ -23,8 +16,8 @@ export const getUsernameFunc = (keycloak) => {
 export const isUserFunc = (keycloak) => {
   return keycloak && 
          keycloak.tokenParsed &&
-         keycloak.tokenParsed.resource_access['order-app'] &&
-         keycloak.tokenParsed.resource_access['order-app'].roles.includes('ORDER_USER')
+         keycloak.tokenParsed.resource_access['book-app'] &&
+         keycloak.tokenParsed.resource_access['book-app'].roles.includes('BOOK_USER')
 }
 
 export const handleLogError = (error) => {
@@ -35,4 +28,8 @@ export const handleLogError = (error) => {
   } else {
     console.log(error.message);
   }
+}
+
+export const bearerAuth = (keycloak) => {
+  return `Bearer ${keycloak.token}`
 }

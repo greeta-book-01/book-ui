@@ -3,7 +3,7 @@ on: push
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: greeta-order-02/order-ui
+  IMAGE_NAME: greeta-book-01/book-ui
   VERSION: ${{ github.sha }}
 
 jobs:
