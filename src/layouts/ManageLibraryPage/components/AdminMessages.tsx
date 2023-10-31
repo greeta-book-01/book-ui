@@ -30,7 +30,7 @@ export const AdminMessages = () => {
     useEffect(() => {
         const fetchUserMessages = async () => {
             if (keycloak.authenticated) {
-                const url = `${config.url.API_BASE_URL}/book/messages/search/findByClosed/?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`;
+                const url = `${config.url.API_BASE_URL}/book/messages/search/findByClosed?closed=false&page=${currentPage - 1}&size=${messagesPerPage}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -54,7 +54,7 @@ export const AdminMessages = () => {
             setHttpError(error.message);
         })
         window.scrollTo(0, 0);
-    }, [keycloak, currentPage, btnSubmit]);
+    }, [currentPage, btnSubmit, messagesPerPage]);
 
     if (isLoadingMessages) {
         return (

@@ -4,7 +4,6 @@ import BookModel from "../../../models/BookModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { config } from '../../../Constants'
-import { bearerAuth } from '../../../components/misc/Helpers'
 
 export const Carousel = () => {
 

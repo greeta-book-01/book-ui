@@ -23,7 +23,7 @@ export const Messages = () => {
     useEffect(() => {
         const fetchUserMessages = async () => {
             if (keycloak.authenticated) {
-                const url = `${config.url.API_BASE_URL}/book/messages/search/findByUserEmail/?userEmail=${keycloak?.accessToken?.claims.sub}&page=${currentPage - 1}&size=${messagesPerPage}`;
+                const url = `${config.url.API_BASE_URL}/book/messages/search/findByUserEmail?userEmail=${keycloak.tokenParsed.email}&page=${currentPage - 1}&size=${messagesPerPage}`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -46,7 +46,7 @@ export const Messages = () => {
             setHttpError(error.messages);
         })
         window.scrollTo(0, 0);
-    }, [keycloak, currentPage]);
+    }, [currentPage]);
 
     if (isLoadingMessages) {
         return (

@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { useKeycloak } from '@react-keycloak/web'
 import BookModel from "../../models/BookModel";
 import { LeaveAReview } from "../Utils/LeaveAReview";
 
 export const CheckoutAndReviewBox: React.FC<{ book: BookModel | undefined, mobile: boolean, 
     currentLoansCount: number, isAuthenticated: any, isCheckedOut: boolean, 
     checkoutBook: any, isReviewLeft: boolean, submitReview: any }> = (props) => {
+
+    const { keycloak } = useKeycloak()
+    
+    const handleLogin = () => {
+          keycloak.login()
+    }
 
     function buttonRender() {
         if (props.isAuthenticated) {
@@ -16,7 +22,7 @@ export const CheckoutAndReviewBox: React.FC<{ book: BookModel | undefined, mobil
                 return (<p className='text-danger'>Too many books checked out.</p>)
             }
         }
-        return (<Link to={'/login'} className='btn btn-success btn-lg'>Sign in</Link>)
+        return (<button className='btn btn-success btn-lg' onClick={handleLogin}>Sign in</button>)
     }
 
     function reviewRender() {

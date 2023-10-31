@@ -137,7 +137,7 @@ export const BookCheckoutPage = () => {
             setIsLoadingUserReview(false);
             setHttpError(error.message);
         })
-    }, [keycloak]);
+    }, []);
 
     useEffect(() => {
         const fetchUserCurrentLoansCount = async () => {
@@ -163,7 +163,7 @@ export const BookCheckoutPage = () => {
             setIsLoadingCurrentLoansCount(false);
             setHttpError(error.message);
         })
-    }, [keycloak, isCheckedOut]);
+    }, [isCheckedOut]);
 
     useEffect(() => {
         const fetchUserCheckedOutBook = async () => {
@@ -191,7 +191,7 @@ export const BookCheckoutPage = () => {
             setIsLoadingBookCheckedOut(false);
             setHttpError(error.message);
         })
-    }, [keycloak]);
+    }, []);
 
     if (isLoading || isLoadingReview || isLoadingCurrentLoansCount || isLoadingBookCheckedOut || isLoadingUserReview) {
         return (

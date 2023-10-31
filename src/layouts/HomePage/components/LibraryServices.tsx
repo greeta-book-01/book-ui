@@ -1,9 +1,13 @@
-import { getKeycloak } from '../../../components/misc/Helpers'
-import { Link } from "react-router-dom";
+import { useKeycloak } from '@react-keycloak/web'
+import { Link } from "react-router-dom"
 
 export const LibraryServices = () => {
 
-    const  keycloak = getKeycloak()
+    const { keycloak } = useKeycloak()
+    
+    const handleLogin = () => {
+          keycloak.login()
+    }
 
     return(
         <div className='container my-5'>
@@ -22,9 +26,9 @@ export const LibraryServices = () => {
                             Library Services
                         </Link>   
                         :
-                        <Link className='btn main-color btn-lg text-white' to='/login'>
+                        <button className='btn main-color btn-lg text-white' onClick={handleLogin}>
                             Sign up
-                        </Link> 
+                        </button>
                     }
 
                     </div>

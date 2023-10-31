@@ -42,7 +42,7 @@ export const Loans = () => {
             setHttpError(error.message);
         })
         window.scrollTo(0, 0);
-    }, [keycloak, checkout]);
+    }, [checkout]);
 
     if (isLoadingUserLoans) {
         return (
@@ -61,7 +61,7 @@ export const Loans = () => {
     }
 
     async function returnBook(bookId: number) {
-        const url = `${config.url.API_BASE_URL}/book/secure/return/?bookId=${bookId}`;
+        const url = `${config.url.API_BASE_URL}/book/secure/return?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -77,7 +77,7 @@ export const Loans = () => {
     }
 
     async function renewLoan(bookId: number) {
-        const url = `${config.url.API_BASE_URL}/book/secure/renew/loan/?bookId=${bookId}`;
+        const url = `${config.url.API_BASE_URL}/book/secure/renew/loan?bookId=${bookId}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -137,7 +137,7 @@ export const Loans = () => {
                                                     data-bs-target={`#modal${shelfCurrentLoan.book.id}`}>
                                                         Manage Loan
                                                 </button>
-                                                <Link to={'search'} className='list-group-item list-group-item-action'>
+                                                <Link to={'/search'} className='list-group-item list-group-item-action'>
                                                     Search more books?
                                                 </Link>
                                             </div>
@@ -162,7 +162,7 @@ export const Loans = () => {
                     <h3 className='mt-3'>
                         Currently no loans
                     </h3>
-                    <Link className='btn btn-primary' to={`search`}>
+                    <Link className='btn btn-primary' to={`/search`}>
                         Search for a new book
                     </Link>
                 </>
@@ -210,7 +210,7 @@ export const Loans = () => {
                                                     data-bs-target={`#mobilemodal${shelfCurrentLoan.book.id}`}>
                                                         Manage Loan
                                                 </button>
-                                                <Link to={'search'} className='list-group-item list-group-item-action'>
+                                                <Link to={'/search'} className='list-group-item list-group-item-action'>
                                                     Search more books?
                                                 </Link>
                                             </div>
@@ -235,7 +235,7 @@ export const Loans = () => {
                     <h3 className='mt-3'>
                         Currently no loans
                     </h3>
-                    <Link className='btn btn-primary' to={`search`}>
+                    <Link className='btn btn-primary' to={`/search`}>
                         Search for a new book
                     </Link>
                 </>

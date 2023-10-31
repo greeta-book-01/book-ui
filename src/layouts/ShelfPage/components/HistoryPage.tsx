@@ -23,7 +23,7 @@ export const HistoryPage = () => {
     useEffect(() => {
         const fetchUserHistory = async () => {
             if (keycloak.authenticated) {
-                const url = `${config.url.API_BASE_URL}/book/histories/search/findBooksByUserEmail/?userEmail=${keycloak.tokenParsed.email}&page=${currentPage - 1}&size=5`;
+                const url = `${config.url.API_BASE_URL}/book/histories/search/findBooksByUserEmail?userEmail=${keycloak.tokenParsed.email}&page=${currentPage - 1}&size=5`;
                 const requestOptions = {
                     method: 'GET',
                     headers: {
@@ -46,7 +46,7 @@ export const HistoryPage = () => {
             setIsLoadingHistory(false);
             setHttpError(error.message);
         })
-    }, [keycloak, currentPage]);
+    }, [currentPage]);
 
     if (isLoadingHistory) {
         return (
@@ -111,7 +111,7 @@ export const HistoryPage = () => {
             :
             <>
                 <h3 className='mt-3'>Currently no history: </h3>
-                <Link className='btn btn-primary' to={'search'}>
+                <Link className='btn btn-primary' to={'/search'}>
                     Search for new book
                 </Link>
             </>

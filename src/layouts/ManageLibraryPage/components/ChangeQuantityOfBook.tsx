@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
-import { getKeycloak } from '../../../components/misc/Helpers'
+import { useKeycloak } from '@react-keycloak/web'
 import { config } from '../../../Constants'
 import { bearerAuth } from '../../../components/misc/Helpers'
 
 export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }> = (props, key) => {
     
-    const { keycloak } = getKeycloak();
+    const { keycloak } = useKeycloak();
     const [quantity, setQuantity] = useState<number>(0);
     const [remaining, setRemaining] = useState<number>(0);
 
@@ -19,7 +19,7 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }, []);
 
     async function increaseQuantity() {
-        const url = `${config.url.API_BASE_URL}/book/admin/secure/increase/book/quantity/?bookId=${props.book?.id}`;
+        const url = `${config.url.API_BASE_URL}/book/admin/secure/increase/book/quantity?bookId=${props.book?.id}`;
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -37,7 +37,7 @@ export const ChangeQuantityOfBook: React.FC<{ book: BookModel, deleteBook: any }
     }
 
     async function decreaseQuantity() {
-        const url = `${config.url.API_BASE_URL}/book/admin/secure/decrease/book/quantity/?bookId=${props.book?.id}`;
+        const url = `${config.url.API_BASE_URL}/book/admin/secure/decrease/book/quantity?bookId=${props.book?.id}`;
         const requestOptions = {
             method: 'PUT',
             headers: {

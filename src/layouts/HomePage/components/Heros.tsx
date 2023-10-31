@@ -1,9 +1,13 @@
-import { getKeycloak } from '../../../components/misc/Helpers'
+import { useKeycloak } from '@react-keycloak/web'
 import { Link } from "react-router-dom";
 
 export const Heros = () => {
 
-    const  keycloak = getKeycloak()
+    const { keycloak } = useKeycloak()
+    
+    const handleLogin = () => {
+          keycloak.login()
+    }
 
     return (
         <div>
@@ -22,9 +26,9 @@ export const Heros = () => {
                             </p>
                             {keycloak.authenticated ? 
                                 <Link type='button' className='btn main-color btn-lg text-white'
-                                    to='search'>Explore top books </Link>
+                                    to='/search'>Explore top books </Link>
                                 :
-                                <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
+                                <button className='btn main-color btn-lg text-white' onClick={handleLogin}>Sign up</button>
                             }  
                         </div>
                     </div>
@@ -63,9 +67,9 @@ export const Heros = () => {
                             </p>
                             {keycloak.authenticated ? 
                                 <Link type='button' className='btn main-color btn-lg text-white'
-                                    to='search'>Explore top books</Link>
+                                    to='/search'>Explore top books</Link>
                                 :
-                                <Link className='btn main-color btn-lg text-white' to='/login'>Sign up</Link>
+                                <button className='btn main-color btn-lg text-white' onClick={handleLogin}>Sign up</button>
                         }
                         </div>
                     </div>
